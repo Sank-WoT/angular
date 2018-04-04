@@ -1,0 +1,12 @@
+{
+	"Stock":
+	[{
+	    "purchase": "Бобы",
+	    "price": 29
+	},
+	{
+	    "purchase": "Спагети",
+	    "price": 2
+	}
+]
+}
