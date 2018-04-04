@@ -70,4 +70,3 @@ export class HomeComponent implements OnInit {
     	this.dataService.delete(item);
     }
 }
-

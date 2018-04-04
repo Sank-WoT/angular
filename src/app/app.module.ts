@@ -14,12 +14,12 @@ import {HttpService} from './http.service';
  
 //функциональность декоратора NgModule, без которой мы не сможем создать модуль 
 @NgModule({
-	// другие модули
+    // другие модули
     imports: [ 
-    	BrowserModule, 
-    	FormsModule, 
-    	AppRoutingModule, 
-    	HttpClientModule
+        BrowserModule, 
+        FormsModule, 
+        AppRoutingModule, 
+        HttpClientModule
     ],
     //классы представлений
     declarations: [ AppComponent, routingComponents],
