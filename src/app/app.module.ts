@@ -6,12 +6,25 @@ import { HttpClientModule }   from '@angular/common/http';
 
 import { AppComponent }   from './app.component';
 // пути
-import { AppRoutingModule, routingComponents }   from './app-routing.module';
-import { Item } from './item';
+import { AppRoutingModule, routingComponents }   from '../module/app-routing.module';
+import { Item } from '../class/item'
+import {DataService} from '../services/data.service'
+import {HttpService} from '../services/http.service';
+import {HttpBd} from '../services/HttpBd.service';
+import { HomeComponent } from './home.component';
+// элемент навигаци
+import { NavComponent} from './nav.component';
+// хлебные крошки
+import { Breadcrumps } from '../app/breadcrumbs.component'
+// элемент навигаци
+import { SharedModule} from '../module/shared.module';
+// генерация qr кодов
+import { NgxQRCodeModule } from 'ngx-qrcode2';
+// отдельный элемент
+import { ItemComponent } from '../app/item.component'
+// отдельный элемент
+import { HeaderComponent } from '../app/header.component'
 
-import {DataService} from './data.service';
-import {HttpService} from './http.service';
- 
 //функциональность декоратора NgModule, без которой мы не сможем создать модуль 
 @NgModule({
     // другие модули
@@ -19,11 +32,14 @@ import {HttpService} from './http.service';
         BrowserModule, 
         FormsModule, 
         AppRoutingModule, 
-        HttpClientModule
+        HttpClientModule,
+        SharedModule,
+        NgxQRCodeModule
     ],
     //классы представлений
-    declarations: [ AppComponent, routingComponents],
-    providers: [DataService, HttpService],
+    declarations: [ AppComponent, routingComponents, HomeComponent, NavComponent, 
+    ItemComponent, Breadcrumps, HeaderComponent],
+    providers: [HttpService, DataService, HttpBd],
     // корневой компонент
     bootstrap:    [ AppComponent ]
 })

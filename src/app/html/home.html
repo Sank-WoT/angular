@@ -1,0 +1,117 @@
+<NavComponent></NavComponent>
+<div class="container-fluid">
+    <Header></Header>
+    <div class="row search">
+        <div class="form-group">
+            <input type="text" class="search__input" placeholder="Поиск" [(ngModel)]="searchString" >
+        </div>
+    </div>
+
+    <div class="panel-input row">
+        <div class="form-inline">
+        <div class="p-y row col s12">
+            <div class="form-group col s12 m4 l4">
+                <div>
+                    <input type="number" class="form-control" [(ngModel)]="serial_number" placeholder = "Серийный номер" />
+                </div>
+            </div>
+            <div class="form-group col s12 m4 l4">
+                <div>
+                    <input type="number" class="form-control" [(ngModel)]="inventory_number" placeholder="Инвентарный номер" />
+                </div>
+            </div>
+            <div class="form-group col s12 m4 l4">
+                <div>
+                    <input type="number" class="form-control" [(ngModel)]="department_number" placeholder="Номер отделения" />
+                </div>
+            </div>
+        </div>
+
+        <div class="p-y row col s12">
+            <div class="form-group col s12 m4 l4">
+                <div>
+                    <input type="text" class="form-control" [(ngModel)]="qr" placeholder="qr код" />
+                </div>
+            </div>
+            <div class="form-group col s12 m4 l4">
+                <div>
+                    <input type="text" class="form-control" [(ngModel)]="firm" placeholder="Фирма" />
+                </div>
+            </div>
+              <div class="form-group col s12 m4 l4">
+                <div>
+                    <input type="text" class="form-control" [(ngModel)]="model" placeholder="Модель" />
+                </div>
+            </div>
+        </div>
+            <div class="form-group">
+                <div class="col-md-8">
+                    <button class="btn btn-default" (click)="addItem(serial_number, inventory_number, department_number, qr, firm, model)">Добавить</button>
+                </div>
+            </div>
+        </div>
+        <br>
+        <br>
+        <br>
+        <div class="table-container_scroll-table">
+            <table class="table table-striped table-hover highlight striped containerTable">
+                <thead>
+                    <tr>
+                        <th class="text-center">Серийный номер</th>
+                        <th class="text-center">Инвентарный номер</th>
+                        <th class="text-center">Номер отделения</th>
+                        <th class="text-center">qr код</th>
+                        <th class="text-center">Фирма</th>
+                        <th class="text-center">Модель</th>
+                        <th class="text-center">QR код</th>
+                        <th class="text-center">Описание</th>
+                        <th class="text-center">Удалить</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    <tr *ngFor="let item of items | filter: 'qr': searchString; let i = index">
+                        <td (dblclick)="editItem(edit, items)" class="text-center table-body__column_vertical-align-m">
+                            <span *ngIf="!edit">{{item.serial_number}}</span>
+                            <input type="number" *ngIf="edit" [(ngModel)]="item.serial_number">
+                        </td>
+                        <td (dblclick)="editItem(edit, items)" class="text-center table-body__column_vertical-align-m">
+                            <span *ngIf="!edit">{{item.inventory_number}}</span>
+                            <input type="number" *ngIf="edit" [(ngModel)]="item.inventory_number">
+                        </td>
+                        <td (dblclick)="editItem(edit, items)" class="text-center table-body__column_vertical-align-m">
+                            <span *ngIf="!edit">{{item.department_number}}</span>
+                            <input type="number" *ngIf="edit" [(ngModel)]="item.department_number">
+                        </td>
+                         <td (dblclick)="editItem(edit, items)" class="text-center table-body__column_vertical-align-m">
+                            <span *ngIf="!edit">{{item.qr}}</span>
+                            <input type="text" *ngIf="edit" [(ngModel)]="item.qr">
+                        </td>
+                         <td (dblclick)="editItem(edit, items)" class="text-center table-body__column_vertical-align-m">
+                            <span *ngIf="!edit">{{item.firm}}</span>
+                            <input type="text" *ngIf="edit" [(ngModel)]="item.firm">
+                        </td>
+                        <td (dblclick)="editItem(edit, items)" class="text-center table-body__column_vertical-align-m">
+                            <span *ngIf="!edit">{{item.model}}</span>
+                            <input type="text" *ngIf="edit" [(ngModel)]="item.model">
+                        </td>
+                        <td class="text-center qr-image table-body__column_vertical-align-m">
+                            <div>
+                              <ngx-qrcode [qrc-element-type]="elementType" [qrc-value] = "item.qr"></ngx-qrcode>
+                            </div>
+                        </td>
+                        <td class="text-center qr-image table-body__column_vertical-align-m">
+                            <div>
+                                <a [routerLink]="['item', item.serial_number]">Показать</a>
+                            </div>
+                        </td>
+                        <td class="text-center table-body__column_vertical-align-m" nowrap=nowrap>
+                            <button (click)="delete(item)" class="green">
+                                <span class="glyphicon glyphicon-remove"></span>
+                            </button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>    
+    </div>

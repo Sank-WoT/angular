@@ -1,12 +1,60 @@
 {
 	"Stock":
 	[{
-	    "purchase": "Бобы",
-	    "price": 29
+	    "serial_number": 1,
+	    "inventory_number": 29,
+	    "department_number": 2,
+	    "qr": "34s45345fdtet",
+	    "firm": "samsung",
+	    "model": "x324"
 	},
 	{
-	    "purchase": "Спагети",
-	    "price": 2
+	    "serial_number": 2,
+	    "inventory_number": 30,
+	    "department_number": 2,
+	    "qr": "34s45345fdtet",
+	    "firm": "samsung",
+	    "model": "x44"
+	},
+	{
+	    "serial_number": 3,
+	    "inventory_number": 30,
+	    "department_number": 2,
+	    "qr": "34s45345fdtet",
+	    "firm": "samsung",
+	    "model": "x44"
+	},
+	{
+	    "serial_number": 4,
+	    "inventory_number": 30,
+	    "department_number": 2,
+	    "qr": "34s45345fdtet",
+	    "firm": "samsung",
+	    "model": "x44"
+	},
+	{
+	    "serial_number": 5,
+	    "inventory_number": 30,
+	    "department_number": 2,
+	    "qr": "34s45345fdtet",
+	    "firm": "samsung",
+	    "model": "x44"
+	},
+	{
+	    "serial_number": 6,
+	    "inventory_number": 30,
+	    "department_number": 2,
+	    "qr": "34s45345fdtet",
+	    "firm": "samsung",
+	    "model": "x44"
+	},
+	{
+	    "serial_number": 7,
+	    "inventory_number": 30,
+	    "department_number": 2,
+	    "qr": "34s45345fdtet",
+	    "firm": "samsung",
+	    "model": "x44"
 	}
 ]
 }

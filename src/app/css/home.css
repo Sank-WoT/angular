@@ -1,0 +1,8 @@
+.table-container_scroll-table {
+  width: 100%;
+  overflow: auto;
+}
+
+.table-body__column_vertical-align-m {
+	vertical-align: middle
+}
