@@ -9,6 +9,7 @@ import { HttpBd} from '../services/HttpBd.service';
 import { ReactiveFormsModule, FormControl} from '@angular/forms';
 import {Router} from '@angular/router';
 import {ItemComponent} from '../app/item.component';
+import {Breadcrumps} from '../app/breadcrumbs.component'
 
 // определим компонент для проекта
 @Component({
@@ -18,6 +19,9 @@ import {ItemComponent} from '../app/item.component';
 })
 
 export class HomeComponent implements OnInit { 
+
+	condition: boolean=true;
+
 	// список значений
     items: Item[] = [];
     // список до изменения 
@@ -54,8 +58,12 @@ export class HomeComponent implements OnInit {
 
     // метод добавления привязанная к кнопке
     addItem( serial_number: number, inventory_number: number, department_number: number, qr: string, firm: string, model: string): void {
-           
-            this.bd.doADD(serial_number, inventory_number, department_number, qr, firm, model).subscribe((data: Item[]) => {
+       	if("" != this.data.correcteInput(serial_number, inventory_number, department_number, qr, firm, model)) {
+       		this.condition = false;
+       		return;
+       	}
+       		this.condition = true;
+	        this.bd.doADD(serial_number, inventory_number, department_number, qr, firm, model).subscribe((data: Item[]) => {
 	     	},
 	      	(error: HttpErrorResponse) => {
 	      		if(error.error instanceof Error) {
@@ -64,9 +72,8 @@ export class HomeComponent implements OnInit {
 	      			console.log("Server error: " + JSON.stringify(error));
 	      			console.log("error.message " + error.message);
 	      		}
-	      	}
-	      );
-        this.items = this.data.addData(this.items, serial_number, inventory_number, department_number, qr, firm, model);
+	      	});
+	      	this.items = this.data.addData(this.items, serial_number, inventory_number, department_number, qr, firm, model);
     }
 
     // метод удаления
@@ -117,13 +124,5 @@ export class HomeComponent implements OnInit {
     diff(a1: Item[], a2: Item[]): Item[] {
     	let missing = a1.filter(item => a2.indexOf(item) < 0);
     	return missing;
-    }
-
-    // функция запросов
-    submit(num: number){
-        this.bd.doGet().subscribe((data: Item[]) => {
-        	console.log(data);
-        	this.text=data[0]['id']; this.done=true;
-        });
     }
 }

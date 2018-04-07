@@ -24,7 +24,9 @@ import { NgxQRCodeModule } from 'ngx-qrcode2';
 import { ItemComponent } from '../app/item.component'
 // отдельный элемент
 import { HeaderComponent } from '../app/header.component'
-
+// модуль для создания форм
+// футер
+import { FooterComponent } from '../app/footer.component'
 //функциональность декоратора NgModule, без которой мы не сможем создать модуль 
 @NgModule({
     // другие модули
@@ -38,7 +40,7 @@ import { HeaderComponent } from '../app/header.component'
     ],
     //классы представлений
     declarations: [ AppComponent, routingComponents, HomeComponent, NavComponent, 
-    ItemComponent, Breadcrumps, HeaderComponent],
+    ItemComponent, HeaderComponent, FooterComponent],
     providers: [HttpService, DataService, HttpBd],
     // корневой компонент
     bootstrap:    [ AppComponent ]

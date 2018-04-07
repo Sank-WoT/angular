@@ -51,6 +51,9 @@
             </div>
         </div>
         <br>
+        <div *ngIf="!condition" class="alert alert-danger">
+            Заполните все поля!!!
+        </div>
         <br>
         <br>
         <div class="table-container_scroll-table">
@@ -115,3 +118,4 @@
             </table>
         </div>    
     </div>
+<FooterComponent></FooterComponent>

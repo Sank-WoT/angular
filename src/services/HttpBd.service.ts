@@ -33,7 +33,19 @@ export class HttpBd{
     }
 
     doADD(serial_number: number, inventory_number: number, department_number: number, qr: string, firm: string, model:string){
-    	console.log("Delete");
+    	if(null == serial_number || undefined == serial_number)
+            return;
+        if(null == inventory_number || undefined == inventory_number)
+            return;
+        if(null == department_number || undefined == department_number)
+            return;
+        if(null == qr || undefined == qr || "" == qr.trim())
+            return;
+        if(null == firm || undefined == firm || "" == firm.trim())
+            return;
+        if(null == model || undefined == model || "" == model.trim())
+            return;
+        console.log("Delete");
     	let search = new URLSearchParams();
     	let urlFull = this.url + "/add.php?serial_number=" + serial_number +
         "&inventory_number=" + inventory_number + "&department_number=" + department_number + 
