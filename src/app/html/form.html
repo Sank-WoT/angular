@@ -1,0 +1,52 @@
+<div class="container">
+  <form (ngSubmit)="onSubmit()" #heroForm="ngForm">
+    <div class="form-group col s12 m4 l4">
+      <input type="text" class="form-control" placeholder="Серийный номер" id="serial_number" required
+      [(ngModel)]="model.serial_number" name="serial_number">
+      <div [hidden]="serial_number.valid || inventory_number.pristine"
+      class="alert alert-danger">
+      </div>
+    </div>
+
+    <div class="form-group col s12 m4 l4">
+      <input type="text" class="form-control" placeholder="Инвентарный номер" id="inventory_number" required
+      [(ngModel)]="model.inventory_number" name="inventory_number">
+      <div [hidden]="inventory_number.valid || inventory_number.pristine"
+      class="alert alert-danger">
+      </div>
+    <div>
+
+    <div class="form-group col s12 m4 l4">
+      <input type="text" class="form-control" placeholder="Номер отделения" id="department_number" required
+      [(ngModel)]="model.department_number" name="department_number">
+      <div [hidden]="department_number.valid || department_number.pristine"
+      class="alert alert-danger">
+      </div>
+    </div>
+
+    <div class="form-group col s12 m4 l4">
+      <input type="text" class="form-control" placeholder="qr код" id="qr" required
+      [(ngModel)]="model.qr" name="qr">
+      <div [hidden]="qr.valid || qr.pristine"
+      class="alert alert-danger">
+      </div>
+    </div>
+
+    <div class="form-group col s12 m4 l4">
+      <input type="text" class="form-control" placeholder="Фирма" id="firm" required
+      [(ngModel)]="model.firm" name="firm">
+      <div [hidden]="firm.valid || firm.pristine"
+      class="alert alert-danger">
+      </div>
+    </div>
+
+    <div class="form-group col s12 m4 l4">
+      <input type="text" class="form-control" placeholder="Модель" id="model" required
+      [(ngModel)]="model.model" name="model">
+      <div [hidden]="model.valid || model.pristine"
+      class="alert alert-danger">
+      </div>
+    </div>
+    <button type="submit" class="btn btn-success" [disabled]="!heroForm.form.valid">Submit</button>
+  </form>
+</div>

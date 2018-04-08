@@ -97,21 +97,33 @@ export class HomeComponent implements OnInit {
     	let itemsEdit: Item[] = [];
     	console.log(this.edit);
     	if(this.edit == true) { 
-    		this.itemsSave = Object.assign(this.items);
-    		console.log("Сохраненное значение");
-    		console.log(this.itemsSave);
-    		console.log(this.items);
+    		this.itemsSave = JSON.parse(JSON.stringify(this.items));
     	}	else {
-    		console.log("Сохраненное значение");
-    		console.log(this.itemsSave);
-    		console.log(this.items);
-    		//itemsEdit = this.diff(this.itemsSave, this.items);
-    		console.log("Значения изменены: " + itemsEdit);
+    		itemsEdit = this.diff(this.itemsSave, this.items);
     	}
     }
 
-    //diff(a1: Item[], a2: Item[]): Item[] {
-    //	let missing = a1.filter(item => a2.indexOf(item) < 0);
-    //	return missing;
-    //}
+    diff(a1: Item[], a2: Item[]): Item[] {
+    	let missing:Item[];
+    	for(let i=0; i<a1.length; i++) {
+    		if(JSON.stringify(a1[i]) != JSON.stringify(a2[i])) {
+    			this.udpateID(a1[i].serial_number, a2[i].serial_number, a2[i].inventory_number, a2[i].department_number, a2[i].qr, a2[i].firm, a2[i].model);
+    		} 
+    	}
+    	return missing;
+    }
+
+    udpateID(alserial_number: number | string, serial_number:number | string, inventory_number: number, department_number: number, qr: string, firm: string, model: string) {
+    	this.bd.doUpdate(alserial_number,serial_number,inventory_number, department_number, qr, firm,model ).subscribe((data: Item[]) => {
+	     	},
+	      	(error: HttpErrorResponse) => {
+	      		if(error.error instanceof Error) {
+	      			console.log("Client error: " + JSON.stringify(error));
+	      		}	else {
+	      			console.log("Server error: " + JSON.stringify(error));
+	      			console.log("error.message " + error.message);
+	      		}
+	      	}
+	      );
+    }
 }

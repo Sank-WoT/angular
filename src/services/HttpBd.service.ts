@@ -14,9 +14,17 @@ export class HttpBd{
     url: string = "http://hello:80";
     doGet(): Observable<IItem[]> {
     	console.log("Get");
-    	let paramUrl = `${this.url}/get.php`;
         return this.http.get<IItem[]>(this.url + "/get.php")
         	.catch(this.errorHandler)
+    }
+
+    doUpdate(al_serial_number: number | string, serial_number: number | string, inventory_number: number, department_number: number, qr: string, firm: string, model:string) {
+        console.log("Get");
+        let urlFull = this.url + "/update.php?al_serial_number=" + al_serial_number + "&serial_number=" + serial_number +
+        "&inventory_number=" + inventory_number + "&department_number=" + department_number + 
+        "&qr=" + qr + "&firm=" + firm + "&model=" + model;
+        return this.http.get(urlFull)
+            .catch(this.errorHandler)
     }
 
     doSelectItem(serial: number): Observable<IItem[]>  {

@@ -15,18 +15,18 @@ import { HomeComponent } from './home.component';
 // элемент навигаци
 import { NavComponent} from './nav.component';
 // хлебные крошки
-import { Breadcrumps } from '../app/breadcrumbs.component'
+import { Breadcrumps } from '../app/breadcrumbs.component';
 // элемент навигаци
 import { SharedModule} from '../module/shared.module';
 // генерация qr кодов
 import { NgxQRCodeModule } from 'ngx-qrcode2';
 // отдельный элемент
-import { ItemComponent } from '../app/item.component'
+import { ItemComponent } from '../app/item.component';
 // отдельный элемент
-import { HeaderComponent } from '../app/header.component'
+import { HeaderComponent } from '../app/header.component';
 // модуль для создания форм
 // футер
-import { FooterComponent } from '../app/footer.component'
+import { FooterComponent } from '../app/footer.component';
 //функциональность декоратора NgModule, без которой мы не сможем создать модуль 
 @NgModule({
     // другие модули
