@@ -1,12 +1,8 @@
 <NavComponent></NavComponent>
 <div class="container-fluid">
     <Header></Header>
-    <div class="row search">
-        <div class="form-group">
-            <input type="text" class="search__input" placeholder="Поиск" [(ngModel)]="searchString" >
-        </div>
-    </div>
-
+    <br>
+    <br>
     <div class="panel-input row">
         <div class="form-inline">
         <div class="p-y row col s12">
@@ -55,6 +51,11 @@
             Заполните все поля!!!
         </div>
         <br>
+        <div class="row search">
+            <div class="form-group">
+                <input type="text" class="search__input" placeholder="Поиск" [(ngModel)]="searchString" >
+            </div>
+        </div>
         <br>
         <div class="table-container_scroll-table">
             <table class="table table-striped table-hover highlight striped containerTable">

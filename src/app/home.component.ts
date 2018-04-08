@@ -19,7 +19,7 @@ import {Breadcrumps} from '../app/breadcrumbs.component'
 })
 
 export class HomeComponent implements OnInit { 
-
+	// переменная отслеживания ошибок
 	condition: boolean=true;
 
 	// список значений
@@ -27,8 +27,6 @@ export class HomeComponent implements OnInit {
     // список до изменения 
     itemsSave: Item[] = [];
     public searchString: string;
-    //
-    done: boolean = false;
 
 	// изменение таблицы   
     edit: boolean = false;
@@ -98,31 +96,22 @@ export class HomeComponent implements OnInit {
     	 // список до изменения 
     	let itemsEdit: Item[] = [];
     	console.log(this.edit);
-    	if(this.edit == true)	{ 
-    		this.itemsSave = this.clone(this.items);
+    	if(this.edit == true) { 
+    		this.itemsSave = Object.assign(this.items);
+    		console.log("Сохраненное значение");
     		console.log(this.itemsSave);
     		console.log(this.items);
     	}	else {
+    		console.log("Сохраненное значение");
     		console.log(this.itemsSave);
     		console.log(this.items);
-    		itemsEdit = this.diff(this.itemsSave, this.items);
+    		//itemsEdit = this.diff(this.itemsSave, this.items);
     		console.log("Значения изменены: " + itemsEdit);
     	}
     }
 
-   	clone(a1: Item[]): Item[]{
-   		let a2: Item[];
-   		let element: Item;
-   		for (var key in a1) {
-  			element = (Object.assign({}, a1[key]));
-  			console.log(element);
-  			a2.push(element);
-		}
-		return a2;
-   	}
-
-    diff(a1: Item[], a2: Item[]): Item[] {
-    	let missing = a1.filter(item => a2.indexOf(item) < 0);
-    	return missing;
-    }
+    //diff(a1: Item[], a2: Item[]): Item[] {
+    //	let missing = a1.filter(item => a2.indexOf(item) < 0);
+    //	return missing;
+    //}
 }
