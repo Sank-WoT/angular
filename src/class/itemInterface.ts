@@ -5,4 +5,5 @@ export interface IItem {
     qr: string;
     firm: string;
     model: string;
+    state: string;
 }

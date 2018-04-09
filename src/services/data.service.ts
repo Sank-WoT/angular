@@ -5,19 +5,19 @@ import {HttpService} from '../services/http.service';
 export class DataService {
     private Item: Item[] = [];
 
-    addData(item: Item[], serial_number: number, inventory_number: number, department_number: number, qr: string, firm: string, model: string) : Item[] {
+    addData(item: Item[], serial_number: number, inventory_number: number, department_number: number, qr: string, firm: string, model: string, state: string) : Item[] {
         let error: string;
         console.log(item);
-        error = this.correcteInput(serial_number, inventory_number, department_number, qr, firm, model);
+        error = this.correcteInput(serial_number, inventory_number, department_number, qr, firm, model, state);
         console.log(error);
         if("" == error) {
-            item.push(new Item(serial_number, inventory_number, department_number, qr, firm, model));
+            item.push(new Item(serial_number, inventory_number, department_number, qr, firm, model, state));
         }
         console.log(item);
         return item;
     }
 
-    correcteInput(serial_number: number, inventory_number: number, department_number: number, qr: string, firm: string, model: string): string {
+    correcteInput(serial_number: number, inventory_number: number, department_number: number, qr: string, firm: string, model: string, state: string): string {
         if(null == serial_number || undefined == serial_number)
             return "serial_number";
         if(null == inventory_number || undefined == inventory_number)
@@ -30,6 +30,8 @@ export class DataService {
             return "firm";
         if(null == model || undefined == model || "" == model.trim())
             return "model";
+        if(null == state || undefined == state || "" == state.trim())
+            return "state";
         return "";
     }
 

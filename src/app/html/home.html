@@ -40,9 +40,24 @@
                 </div>
             </div>
         </div>
-            <div class="form-group">
+
+        <div class="p-y row col s12">
+            <div class="form-group col s12 m4 l4">
+                <label>Выберите состояние оборудования</label>
+                <div>
+                    <select class="form-control" [(ngModel)]="state">
+                      <option *ngFor="let stateOption of stateOptions"
+                              [value]="stateOption"> 
+                              {{stateOption}} 
+                      </option>
+                    </select>
+                </div>
+            </div>
+        </div>
+
+            <div class="form-group right">
                 <div class="col-md-8">
-                    <button class="btn btn-default" (click)="addItem(serial_number, inventory_number, department_number, qr, firm, model)">Добавить</button>
+                    <button class="btn btn-default" (click)="addItem(serial_number, inventory_number, department_number, qr, firm, model, state)">Добавить</button>
                 </div>
             </div>
         </div>
@@ -67,6 +82,7 @@
                         <th class="text-center">qr код</th>
                         <th class="text-center">Фирма</th>
                         <th class="text-center">Модель</th>
+                        <th class="text-center">Состояние</th>
                         <th class="text-center">QR код</th>
                         <th class="text-center">Описание</th>
                         <th class="text-center">Удалить</th>
@@ -75,35 +91,48 @@
 
                 <tbody>
                     <tr *ngFor="let item of items | filter: 'qr': searchString; let i = index">
+ 
                         <td (dblclick)="editItem(edit, items)" class="text-center table-body__column_vertical-align-m">
                             <span *ngIf="!edit">{{item.serial_number}}</span>
                             <input type="number" *ngIf="edit" [(ngModel)]="item.serial_number">
                         </td>
+
                         <td (dblclick)="editItem(edit, items)" class="text-center table-body__column_vertical-align-m">
                             <span *ngIf="!edit">{{item.inventory_number}}</span>
                             <input type="number" *ngIf="edit" [(ngModel)]="item.inventory_number">
                         </td>
+
                         <td (dblclick)="editItem(edit, items)" class="text-center table-body__column_vertical-align-m">
                             <span *ngIf="!edit">{{item.department_number}}</span>
                             <input type="number" *ngIf="edit" [(ngModel)]="item.department_number">
                         </td>
+
                          <td (dblclick)="editItem(edit, items)" class="text-center table-body__column_vertical-align-m">
                             <span *ngIf="!edit">{{item.qr}}</span>
                             <input type="text" *ngIf="edit" [(ngModel)]="item.qr">
                         </td>
+
                          <td (dblclick)="editItem(edit, items)" class="text-center table-body__column_vertical-align-m">
                             <span *ngIf="!edit">{{item.firm}}</span>
                             <input type="text" *ngIf="edit" [(ngModel)]="item.firm">
                         </td>
+
                         <td (dblclick)="editItem(edit, items)" class="text-center table-body__column_vertical-align-m">
                             <span *ngIf="!edit">{{item.model}}</span>
                             <input type="text" *ngIf="edit" [(ngModel)]="item.model">
                         </td>
+
+                        <td (dblclick)="editItem(edit, items)" class="text-center table-body__column_vertical-align-m">
+                            <span *ngIf="!edit">{{item.state}}</span>
+                            <input type="text" *ngIf="edit" [(ngModel)]="item.state">
+                        </td>
+
                         <td class="text-center qr-image table-body__column_vertical-align-m">
                             <div>
                               <ngx-qrcode [qrc-element-type]="elementType" [qrc-value] = "item.qr"></ngx-qrcode>
                             </div>
                         </td>
+
                         <td class="text-center qr-image table-body__column_vertical-align-m">
                             <div>
                                 <a [routerLink]="['item', item.serial_number]">Показать</a>

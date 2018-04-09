@@ -7,7 +7,7 @@ import { Item } from '../class/item';
 	styleUrls: ['../app/css/form.css']
 })
 export class FormaComponent {
-	model = new Item(18, 10, 12, 'Chuck Overstreet','Chuck Overstreet', 'Chuck Overstreet');
+	model = new Item(18, 10, 12, 'Chuck Overstreet','Chuck Overstreet', 'Chuck Overstreet', 'sdf');
 	submitted = false;
 	onSubmit() { this.submitted = true; }
 	get diagnostic() { return JSON.stringify(this.model); }

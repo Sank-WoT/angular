@@ -18,11 +18,11 @@ export class HttpBd{
         	.catch(this.errorHandler)
     }
 
-    doUpdate(al_serial_number: number | string, serial_number: number | string, inventory_number: number, department_number: number, qr: string, firm: string, model:string) {
+    doUpdate(al_serial_number: number | string, serial_number: number | string, inventory_number: number, department_number: number, qr: string, firm: string, model:string, state: string) {
         console.log("Get");
         let urlFull = this.url + "/update.php?al_serial_number=" + al_serial_number + "&serial_number=" + serial_number +
         "&inventory_number=" + inventory_number + "&department_number=" + department_number + 
-        "&qr=" + qr + "&firm=" + firm + "&model=" + model;
+        "&qr=" + qr + "&firm=" + firm + "&model=" + model + "&state=" + state;
         return this.http.get(urlFull)
             .catch(this.errorHandler)
     }
@@ -40,7 +40,7 @@ export class HttpBd{
         return this.http.get(this.url);
     }
 
-    doADD(serial_number: number, inventory_number: number, department_number: number, qr: string, firm: string, model:string){
+    doADD(serial_number: number, inventory_number: number, department_number: number, qr: string, firm: string, model:string, state: string){
     	if(null == serial_number || undefined == serial_number)
             return;
         if(null == inventory_number || undefined == inventory_number)
@@ -52,6 +52,8 @@ export class HttpBd{
         if(null == firm || undefined == firm || "" == firm.trim())
             return;
         if(null == model || undefined == model || "" == model.trim())
+            return;
+        if(null == state || undefined == state || "" == state.trim())
             return;
         console.log("Delete");
     	let search = new URLSearchParams();
