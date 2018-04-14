@@ -1,4 +1,4 @@
-import { Component, OnInit, Output, EventEmitter, Input} from '@angular/core';
+import { Component, OnInit, Output, EventEmitter, Input, ViewChild} from '@angular/core';
 import { HttpClient, HttpErrorResponse} from '@angular/common/http';
 import {Item} from '../class/item';
 import { NgForm} from '@angular/forms';
@@ -9,7 +9,6 @@ import { HttpBd} from '../services/HttpBd.service';
 import { ReactiveFormsModule, FormControl} from '@angular/forms';
 import { Router } from '@angular/router';
 import { ItemComponent } from '../app/item.component';
-import { Breadcrumps } from '../app/breadcrumbs.component'
 
 // определим компонент для проекта
 @Component({
@@ -21,9 +20,14 @@ import { Breadcrumps } from '../app/breadcrumbs.component'
 export class HomeComponent implements OnInit { 
 	// состояния оборудования
 	stateOptions: string[] = ["Требуется ремонт", "В хорошем состоянии", "Списан"];
+	
+	// значение
+	filter1: string = 'qr';
+
+	filterTable: string;
 
 	// фильтры 
-	filterOptions: string[] = ["Серийный номер", "Инвентарный номер", "Номер отделения", "qr код", "Фирма", "Модель"];
+	filterOptions: string[] = ["Серийный номер", "Инвентарный номер", "Номер отделения", "qr код", "Фирма", "Модель", "Состояние"];
 
 	// переменная отслеживания ошибок
 	condition: boolean=true;
@@ -132,5 +136,20 @@ export class HomeComponent implements OnInit {
 	      		}
 	      	}
 	      );
+    }
+
+    adapterChange() {
+    	switch(this.filterTable) {
+    		case "Серийный номер": {this.filter1 = "serial_number"; break; }
+    		case "Инвентарный номер": {this.filter1 = "inventory_number"; break; }
+    		case "Номер отделения": {this.filter1 = "department_number"; break; }
+    		case "qr код": {this.filter1 = "qr"; break; }
+    		case "Фирма": {this.filter1 = "firm"; break; }
+    		case "Модель": {this.filter1 = "model"; break; }
+    		case "Состояние": {this.filter1 = "state"; break; }
+    		  default: { 
+    			  break; 
+  			 } 
+    	}
     }
 }

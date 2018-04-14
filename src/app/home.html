@@ -1,0 +1,118 @@
+<div class="container">
+	<div class="page-header">
+        <h1> АС по учёту оборудования на предприятии "справочник оборудования" </h1>
+    </div>
+    <div class="row">
+		<form class="navbar-form navbar-left" role="search">
+		  <div class="form-group">
+		    <input type="text" class="form-control" placeholder="Поиск">
+		  </div>
+		  <button type="submit" class="btn btn-default">Найти</button>
+		</form>
+	</div>
+	<br>
+    <div class="panel row">
+        <div class="form-inline">
+       	<div class="p-y">
+            <div class="form-group">
+                <div class="col-md-3">
+                    <input class="form-control" [(ngModel)]="serial_number" placeholder = "Серийный номер" />
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-md-3">
+                    <input type="number" class="form-control" [(ngModel)]="inventory_number" placeholder="Инвентарный номер" />
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-md-3">
+                    <input type="number" class="form-control" [(ngModel)]="department_number" placeholder="Номер отделения" />
+                </div>
+            </div>
+    	</div>
+		<br>
+    	<div class="p-y">
+            <div class="form-group">
+                <div class="col-md-3">
+                    <input type="text" class="form-control" [(ngModel)]="qr" placeholder="qr код" />
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-md-3">
+                    <input type="text" class="form-control" [(ngModel)]="firm" placeholder="Фирма" />
+                </div>
+            </div>
+              <div class="form-group">
+                <div class="col-md-3">
+                    <input type="text" class="form-control" [(ngModel)]="model" placeholder="Модель" />
+                </div>
+            </div>
+        </div>
+         <br>
+            <div class="form-group">
+                <div class="col-md-8">
+                    <button class="btn btn-default" (click)="addItem(serial_number, inventory_number, department_number, qr, firm, model)">Добавить</button>
+                </div>
+            </div>
+        </div>
+        <br>
+
+        <table class="table table-striped table-hover table-striped">
+            <thead>
+                <tr>
+                    <th>Серийный номер</th>
+                    <th>Инвентарный номер</th>
+                    <th>Номер отделения</th>
+                    <th>qr код</th>
+                    <th>Фирма</th>
+                    <th>Модель</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let item of items">
+                    <td (dblclick)="editItem(edit, items)">
+                    	<span *ngIf="!edit">{{item.serial_number}}</span>
+                    	<input type="number" *ngIf="edit" [(ngModel)]="item.serial_number">
+                    </td>
+                    <td (dblclick)="editItem(edit, items)">
+                    	<span *ngIf="!edit">{{item.inventory_number}}</span>
+                    	<input type="number" *ngIf="edit" [(ngModel)]="item.inventory_number">
+                    </td>
+                    <td (dblclick)="editItem(edit, items)">
+                    	<span *ngIf="!edit">{{item.department_number}}</span>
+                    	<input type="number" *ngIf="edit" [(ngModel)]="item.department_number">
+                    </td>
+                     <td (dblclick)="editItem(edit, items)">
+                    	<span *ngIf="!edit">{{item.qr}}</span>
+                    	<input type="text" *ngIf="edit" [(ngModel)]="item.qr">
+                    </td>
+                     <td (dblclick)="editItem(edit, items)">
+                    	<span *ngIf="!edit">{{item.firm}}</span>
+                    	<input type="text" *ngIf="edit" [(ngModel)]="item.firm">
+                    </td>
+                    <td (dblclick)="editItem(edit, items)">
+                    	<span *ngIf="!edit">{{item.model}}</span>
+                    	<input type="text" *ngIf="edit" [(ngModel)]="item.model">
+                    </td>
+                    <td nowrap=nowrap><button (click)="delete(item)"><span class="glyphicon glyphicon-remove"></span></button></td>
+                </tr>
+            </tbody>
+        </table>
+
+         <nav aria-label="Page navigation example">
+		  <ul class="pagination pull-right">
+		    <li class="page-item"><a class="page-link">Previous</a></li>
+		    <li class="page-item"><a class="page-link">1</a></li>
+		    <li class="page-item"><a class="page-link">Next</a></li>
+		  </ul>
+		</nav>
+    </div>
+	<div *ngIf="done">{{factorial}}</div>
+    <div class="form-group">
+        <label>Введите число</label>
+        <input class="form-control" type="number" name="factorial" [(ngModel)]="num" />
+    </div>
+    <div class="form-group">
+        <button class="btn btn-default" (click)="submit(num)">Отправить</button>
+    </div>
+    </div>
